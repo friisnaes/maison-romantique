@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maison Romantique · Chambre d'hôtes · Olargues, Frankrig</title>
+<meta name="description" content="Maison Romantique – en romantisk chambre d'hôtes i middelalderbyen Olargues midt i Languedoc. Floden Jaur i baghaven, udsigt til Pont du Diable, og natur i en af Frankrigs største nationalparker.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Mulish:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f6f3ec;
+    --paper-2:#efeae0;
+    --ink:#2e2f29;
+    --ink-soft:#5b5d54;
+    --olive:#6e7245;
+    --olive-deep:#565a36;
+    --line:#d7d2c4;
+    --gold:#b89b5e;
+    --shadow:rgba(46,47,41,.10);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Mulish',system-ui,sans-serif;
+    font-weight:300;
+    line-height:1.75;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.display{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;line-height:1.1}
+  img{display:block;max-width:100%}
+  a{color:inherit}
+
+  .eyebrow{
+    font-family:'Mulish',sans-serif;
+    font-weight:600;
+    font-size:.72rem;
+    letter-spacing:.32em;
+    text-transform:uppercase;
+    color:var(--olive);
+  }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:1.1rem clamp(1.2rem,5vw,3.5rem);
+    transition:background .4s ease, padding .4s ease, box-shadow .4s ease;
+  }
+  nav.scrolled{
+    background:rgba(246,243,236,.92);
+    backdrop-filter:blur(10px);
+    box-shadow:0 1px 0 var(--line);
+    padding:.7rem clamp(1.2rem,5vw,3.5rem);
+  }
+  nav .brand{
+    font-family:'Cormorant Garamond',serif;
+    font-size:1.45rem;font-weight:600;letter-spacing:.02em;
+    color:#fff;transition:color .4s ease;text-decoration:none;
+  }
+  nav.scrolled .brand{color:var(--ink)}
+  nav .links{display:flex;gap:2rem;align-items:center}
+  nav .links a{
+    text-decoration:none;font-size:.82rem;letter-spacing:.12em;
+    text-transform:uppercase;font-weight:500;color:rgba(255,255,255,.92);
+    transition:color .4s ease;
+  }
+  nav.scrolled .links a{color:var(--ink-soft)}
+  nav .links a:hover{color:var(--gold)}
+  nav .links a.cta{
+    border:1px solid rgba(255,255,255,.55);
+    padding:.5rem 1.1rem;border-radius:2px;
+  }
+  nav.scrolled .links a.cta{border-color:var(--olive);color:var(--olive)}
+  .burger{display:none;background:none;border:none;cursor:pointer;width:26px;height:18px;position:relative}
+  .burger span{position:absolute;left:0;height:2px;width:100%;background:#fff;transition:.3s}
+  nav.scrolled .burger span{background:var(--ink)}
+  .burger span:nth-child(1){top:0}
+  .burger span:nth-child(2){top:8px}
+  .burger span:nth-child(3){top:16px}
+
+  /* ---------- HERO ---------- */
+  header.hero{
+    position:relative;height:100vh;min-height:600px;
+    display:flex;align-items:center;justify-content:center;text-align:center;
+    color:#fff;overflow:hidden;
+  }
+  header.hero .bg{
+    position:absolute;inset:0;
+    background:url('images/vindue-bro.jpeg') center 38%/cover no-repeat;
+    transform:scale(1.05);
+  }
+  header.hero .bg::after{
+    content:'';position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(30,32,26,.45)0%,rgba(30,32,26,.20)40%,rgba(30,32,26,.55)100%);
+  }
+  header.hero .inner{position:relative;z-index:2;padding:0 1.5rem;max-width:880px;opacity:0;transform:translateY(18px);animation:rise 1.3s .25s cubic-bezier(.2,.7,.2,1) forwards}
+  header.hero .eyebrow{color:rgba(255,255,255,.85);margin-bottom:1.6rem}
+  header.hero h1{
+    font-size:clamp(3rem,9vw,6.2rem);font-weight:500;
+    text-shadow:0 2px 30px rgba(0,0,0,.25);
+  }
+  header.hero h1 em{font-style:italic;display:block}
+  header.hero p.sub{
+    font-family:'Cormorant Garamond',serif;
+    font-size:clamp(1.15rem,2.5vw,1.6rem);
+    margin-top:1.2rem;font-weight:400;letter-spacing:.01em;
+    color:rgba(255,255,255,.92);
+  }
+  .scroll-hint{
+    position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);z-index:2;
+    color:rgba(255,255,255,.8);font-size:.7rem;letter-spacing:.25em;text-transform:uppercase;
+    display:flex;flex-direction:column;align-items:center;gap:.6rem;
+    animation:fade 2s 1.4s ease forwards;opacity:0;
+  }
+  .scroll-hint .line{width:1px;height:42px;background:rgba(255,255,255,.6);animation:drop 2.2s ease-in-out infinite}
+  @keyframes rise{to{opacity:1;transform:translateY(0)}}
+  @keyframes fade{to{opacity:1}}
+  @keyframes drop{0%,100%{transform:scaleY(.4);transform-origin:top;opacity:.4}50%{transform:scaleY(1);opacity:1}}
+
+  /* ---------- SECTIONS ---------- */
+  section{padding:clamp(4.5rem,10vw,8rem) clamp(1.4rem,6vw,5rem)}
+  .wrap{max-width:1180px;margin:0 auto}
+  .section-head{max-width:720px;margin:0 auto 3.5rem;text-align:center}
+  .section-head h2{font-size:clamp(2.2rem,5vw,3.4rem);margin:.7rem 0}
+  .section-head p{color:var(--ink-soft);font-size:1.05rem}
+  .divider{width:46px;height:1px;background:var(--gold);margin:1.4rem auto 0}
+
+  /* intro split */
+  .intro{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(2rem,5vw,4.5rem);align-items:center}
+  .intro .txt h2{font-size:clamp(2rem,4.5vw,3rem);margin:.6rem 0 1.2rem}
+  .intro .txt p{color:var(--ink-soft);margin-bottom:1.1rem}
+  .intro .media{position:relative}
+  .intro .media img{width:100%;height:100%;max-height:620px;object-fit:cover;border-radius:3px;box-shadow:0 24px 50px -24px var(--shadow)}
+  .intro .media .badge{
+    position:absolute;bottom:-22px;left:-22px;background:var(--paper);
+    border:1px solid var(--line);padding:1.1rem 1.5rem;border-radius:3px;
+    font-family:'Cormorant Garamond',serif;text-align:center;box-shadow:0 14px 30px -16px var(--shadow);
+  }
+  .intro .media .badge strong{display:block;font-size:1.9rem;color:var(--olive);font-weight:600}
+  .intro .media .badge span{font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);font-family:'Mulish',sans-serif}
+
+  /* feature rows (flod, bro, solnedgang) */
+  .feature{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.5rem,5vw,4rem);align-items:center;margin-bottom:clamp(3rem,7vw,6rem)}
+  .feature:last-child{margin-bottom:0}
+  .feature.rev .media{order:2}
+  .feature .media img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:3px;box-shadow:0 20px 44px -22px var(--shadow)}
+  .feature .txt .num{font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--gold);letter-spacing:.1em}
+  .feature .txt h3{font-size:clamp(1.7rem,3.5vw,2.4rem);margin:.4rem 0 1rem}
+  .feature .txt p{color:var(--ink-soft)}
+
+  .alt{background:var(--paper-2)}
+
+  /* rooms */
+  .rooms-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem}
+  .room{background:var(--paper);border:1px solid var(--line);border-radius:3px;overflow:hidden;transition:transform .5s ease,box-shadow .5s ease}
+  .room:hover{transform:translateY(-6px);box-shadow:0 26px 50px -26px var(--shadow)}
+  .room .ph{overflow:hidden;aspect-ratio:3/4}
+  .room .ph img{width:100%;height:100%;object-fit:cover;transition:transform .9s cubic-bezier(.2,.7,.2,1)}
+  .room:hover .ph img{transform:scale(1.06)}
+  .room .body{padding:1.4rem 1.5rem 1.7rem}
+  .room .body h3{font-size:1.55rem;margin-bottom:.4rem}
+  .room .body p{font-size:.95rem;color:var(--ink-soft)}
+  .room .body .meta{margin-top:.9rem;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--olive);font-weight:600}
+
+  /* house = pejsestue + gaardhave */
+  .house{display:grid;grid-template-columns:1fr 1fr;gap:1.6rem}
+  .house figure{position:relative;border-radius:3px;overflow:hidden;box-shadow:0 20px 44px -24px var(--shadow)}
+  .house figure img{width:100%;height:100%;aspect-ratio:3/4;object-fit:cover;transition:transform .9s ease}
+  .house figure:hover img{transform:scale(1.05)}
+  .house figcaption{position:absolute;left:0;bottom:0;right:0;padding:1.6rem 1.4rem .9rem;color:#fff;
+    background:linear-gradient(180deg,transparent,rgba(20,22,16,.75));font-family:'Cormorant Garamond',serif;font-size:1.5rem}
+
+  /* dining */
+  .dining{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.5rem,5vw,4rem);align-items:center}
+  .dining .gallery{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+  .dining .gallery img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:3px;box-shadow:0 18px 36px -22px var(--shadow)}
+  .dining .gallery img:first-child{grid-column:1/-1;aspect-ratio:16/10}
+  .dining .txt h2{font-size:clamp(2rem,4.5vw,3rem);margin:.6rem 0 1.1rem}
+  .dining .txt p{color:var(--ink-soft);margin-bottom:1rem}
+  .pill{display:inline-flex;align-items:center;gap:.5rem;background:var(--paper);border:1px solid var(--line);
+    padding:.45rem 1rem;border-radius:40px;font-size:.78rem;letter-spacing:.08em;color:var(--olive-deep);font-weight:600;margin:.2rem .3rem .2rem 0}
+
+  /* activities */
+  .acts{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:1rem}
+  .act{border:1px solid var(--line);background:var(--paper);border-radius:3px;padding:1.7rem 1.5rem;transition:border-color .4s,transform .4s}
+  .act:hover{border-color:var(--olive);transform:translateY(-4px)}
+  .act h3{font-size:1.4rem;margin-bottom:.4rem}
+  .act p{font-size:.92rem;color:var(--ink-soft)}
+
+  /* location / getting here */
+  .loc{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.5rem,5vw,4rem);align-items:center}
+  .loc .media img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:3px;box-shadow:0 20px 44px -24px var(--shadow)}
+  .loc ul{list-style:none;margin-top:1.4rem}
+  .loc li{display:flex;gap:1rem;padding:1rem 0;border-bottom:1px solid var(--line)}
+  .loc li:last-child{border-bottom:none}
+  .loc li .k{font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:var(--olive);min-width:80px;line-height:1}
+  .loc li .v strong{display:block;font-weight:600;font-size:.95rem}
+  .loc li .v span{font-size:.9rem;color:var(--ink-soft)}
+
+  /* CTA / booking */
+  .booking{position:relative;color:#fff;text-align:center;overflow:hidden}
+  .booking .bg{position:absolute;inset:0;background:url('images/solnedgang.jpeg') center/cover no-repeat}
+  .booking .bg::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(40,30,20,.55),rgba(40,30,20,.7))}
+  .booking .inner{position:relative;z-index:2;max-width:680px;margin:0 auto}
+  .booking h2{font-size:clamp(2.3rem,6vw,3.8rem);margin-bottom:1rem}
+  .booking p{color:rgba(255,255,255,.9);font-size:1.08rem;margin-bottom:.6rem}
+  .booking .note{font-size:.95rem;color:rgba(255,255,255,.8);font-style:italic;margin:1.4rem 0 2.2rem}
+  .booking .actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+  .btn{display:inline-flex;align-items:center;gap:.6rem;padding:.95rem 1.8rem;border-radius:3px;
+    text-decoration:none;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600;transition:.3s}
+  .btn-solid{background:var(--paper);color:var(--ink)}
+  .btn-solid:hover{background:#fff;transform:translateY(-2px)}
+  .btn-ghost{border:1px solid rgba(255,255,255,.6);color:#fff}
+  .btn-ghost:hover{background:rgba(255,255,255,.12);transform:translateY(-2px)}
+
+  /* footer */
+  footer{background:var(--olive-deep);color:rgba(255,255,255,.85);padding:clamp(3rem,7vw,5rem) clamp(1.4rem,6vw,5rem) 2.5rem}
+  footer .grid{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:2.5rem}
+  footer h4{font-family:'Cormorant Garamond',serif;font-size:1.8rem;color:#fff;font-weight:600;margin-bottom:.6rem}
+  footer p,footer a{font-size:.92rem;color:rgba(255,255,255,.8);text-decoration:none;line-height:1.9}
+  footer a:hover{color:#fff}
+  footer .col span.label{display:block;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:.7rem;font-weight:600}
+  footer .base{max-width:1180px;margin:2.5rem auto 0;padding-top:1.6rem;border-top:1px solid rgba(255,255,255,.18);
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:.6rem;font-size:.8rem;color:rgba(255,255,255,.6)}
+
+  /* reveal on scroll */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media(max-width:880px){
+    nav .links{
+      position:fixed;inset:0 0 0 auto;width:min(78vw,320px);
+      background:var(--paper);flex-direction:column;justify-content:center;gap:1.8rem;
+      padding:2rem;transform:translateX(100%);transition:transform .4s ease;box-shadow:-10px 0 40px rgba(0,0,0,.12);
+    }
+    nav .links.open{transform:translateX(0)}
+    nav .links a{color:var(--ink)!important;font-size:1rem}
+    nav .links a.cta{border-color:var(--olive);color:var(--olive)!important}
+    .burger{display:block;z-index:60}
+    .intro,.feature,.feature.rev,.dining,.loc{grid-template-columns:1fr}
+    .feature.rev .media{order:0}
+    .intro .media .badge{left:1rem;bottom:1rem}
+    .rooms-grid{grid-template-columns:1fr 1fr}
+    .acts{grid-template-columns:1fr 1fr}
+    footer .grid{grid-template-columns:1fr}
+  }
+  @media(max-width:560px){
+    .rooms-grid,.acts,.house,.dining .gallery{grid-template-columns:1fr}
+    .dining .gallery img:first-child{aspect-ratio:16/10}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important}
+    .reveal{opacity:1;transform:none}
+  }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="#top" class="brand">Maison Romantique</a>
+  <div class="links" id="links">
+    <a href="#stedet">Stedet</a>
+    <a href="#vaerelser">Værelser</a>
+    <a href="#huset">Huset</a>
+    <a href="#spisesteder">Spisesteder</a>
+    <a href="#omraadet">Området</a>
+    <a href="#booking" class="cta">Book ophold</a>
+  </div>
+  <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="bg"></div>
+  <div class="inner">
+    <div class="eyebrow">Chambre d'hôtes · Olargues, Frankrig</div>
+    <h1>Maison <em>Romantique</em></h1>
+    <p class="sub">En romantisk middelalderby ved floden Jaur — midt i Languedoc og en af Frankrigs største nationalparker.</p>
+  </div>
+  <div class="scroll-hint"><span>Træd indenfor</span><span class="line"></span></div>
+</header>
+
+<!-- INTRO -->
+<section id="stedet">
+  <div class="wrap intro">
+    <div class="txt reveal">
+      <div class="eyebrow">Velkommen</div>
+      <h2>Et hus med sjæl i Olargues</h2>
+      <p>Maison Romantique ligger i hjertet af Olargues — en af de smukkeste middelalderbyer i det sydlige Frankrig. Husets værelser står med deres originale indretning, gulve og detaljer, og fra de fleste af dem er der udsigt til den gamle stenbro og floden nedenfor.</p>
+      <p>Byen tiltrækker først og fremmest dem, der søger den ægte, gamle stemning og den storslåede natur omkring. Her er stille. Her er smukt. Og her er tid til at trække vejret.</p>
+      <p>Vi bor cirka 40 minutters kørsel fra Middelhavet, midt i Frankrigs største vinområde, og med en af landets største nationalparker som baghave.</p>
+    </div>
+    <div class="media reveal">
+      <img src="images/landsby-kirketaarn.jpeg" alt="Olargues set fra oven med det gamle kirketårn og bjergene bag byen">
+      <div class="badge"><strong>~900</strong><span>år gammel by</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES: flod, bro, solnedgang -->
+<section class="alt">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Lige uden for døren</div>
+      <h2>Floden, broen og solnedgangen</h2>
+      <div class="divider"></div>
+    </div>
+
+    <div class="feature reveal">
+      <div class="media"><img src="images/flod-jaur.jpeg" alt="Floden Jaur med klart vand mellem klipper og grønne træer"></div>
+      <div class="txt">
+        <span class="num">I.</span>
+        <h3>Floden Jaur</h3>
+        <p>Floden Jaur med det klareste vand løber gennem vores baghave — helt perfekt til en dukkert i det varme vejr. Find en sten i solen, læg dig i det kølige vand, og lyt til, at der ikke er andet end naturen.</p>
+      </div>
+    </div>
+
+    <div class="feature rev reveal">
+      <div class="media"><img src="images/pont-du-diable.jpeg" alt="Den gamle stenbro Pont du Diable over floden i Olargues"></div>
+      <div class="txt">
+        <span class="num">II.</span>
+        <h3>Pont du Diable</h3>
+        <p>Broen Pont du Diable er en af byens vartegn og stammer fra omkring 900-tallet. Den buer elegant over floden, og der er udsigt til den fra de fleste af husets værelser — et stykke levende historie, du vågner op til.</p>
+      </div>
+    </div>
+
+    <div class="feature reveal">
+      <div class="media"><img src="images/solnedgang.jpeg" alt="Solnedgang over bjergene set fra det højeste punkt i byen"></div>
+      <div class="txt">
+        <span class="num">III.</span>
+        <h3>Solnedgang ved kirketårnet</h3>
+        <p>Den smukkeste solnedgang ses fra byens højeste punkt ved det gamle kirketårn. Tag et glas rosé med, nyd stilheden og det vide udsyn over bjergene, mens dagen langsomt falder til ro.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROOMS -->
+<section id="vaerelser">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Overnatning</div>
+      <h2>De romantiske værelser</h2>
+      <p>Indrettet med den originale stemning bevaret — gamle gulve, fine detaljer og udsigt til floden fra de fleste værelser.</p>
+      <div class="divider"></div>
+    </div>
+    <div class="rooms-grid">
+      <article class="room reveal">
+        <div class="ph"><img src="images/vaerelse-gul.jpeg" alt="Lyst værelse med plankegulv, blomstret tapet og to vinduer ud mod det grønne"></div>
+        <div class="body">
+          <h3>Det lyse værelse</h3>
+          <p>Højt til loftet, originale plankegulve og lyst tapet. To store vinduer lukker morgenlyset og det grønne ind.</p>
+          <div class="meta">Udsigt til floden</div>
+        </div>
+      </article>
+      <article class="room reveal">
+        <div class="ph"><img src="images/vaerelse-blomster.jpeg" alt="Romantisk værelse med blomstret tapet, spejl og dobbeltseng"></div>
+        <div class="body">
+          <h3>Det romantiske værelse</h3>
+          <p>Blomstret tapet, antikt spejl og bløde gardiner. Et rum, der står, som det altid har gjort — roligt og romantisk.</p>
+          <div class="meta">Original indretning</div>
+        </div>
+      </article>
+      <article class="room reveal">
+        <div class="ph"><img src="images/vaerelse-creme.jpeg" alt="Rummeligt værelse med antikke møbler, kommode med spejl og udsigt til bjergene"></div>
+        <div class="body">
+          <h3>Det rummelige værelse</h3>
+          <p>Antikke møbler, en smuk kommode med spejl og plads til at slå sig ned. Vinduerne vender ud mod by og bjerge.</p>
+          <div class="meta">Plads og udsyn</div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- HOUSE: pejsestue + gaardhave -->
+<section id="huset" class="alt">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Fælles rum</div>
+      <h2>Huset og gårdhaven</h2>
+      <p>To rolige steder at samles — om aftenen ved pejsen og om morgenen i gårdhaven.</p>
+      <div class="divider"></div>
+    </div>
+    <div class="house">
+      <figure class="reveal">
+        <img src="images/pejsestue.jpeg" alt="Hyggelig fælles pejsestue med to sofaer, bogreol og mønstret flisegulv">
+        <figcaption>Pejsestuen — til hyggelige aftner</figcaption>
+      </figure>
+      <figure class="reveal">
+        <img src="images/facade-gaardhave.jpeg" alt="Gårdhave med borde, oliventræer og den grønne hoveddør, hvor morgenmaden serveres">
+        <figcaption>Gårdhaven — hvor morgenmaden serveres</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- DINING -->
+<section id="spisesteder">
+  <div class="wrap dining">
+    <div class="gallery reveal">
+      <img src="images/restaurant-suppe.jpeg" alt="Forret med grøn ærtesuppe på Fleur d'Olargues">
+      <img src="images/ret-gourmet.jpeg" alt="Gourmetret anrettet på sort tallerken">
+      <img src="images/restaurant-michelin.jpeg" alt="Michelin 2025-skilt ved indgangen til restauranten">
+    </div>
+    <div class="txt reveal">
+      <div class="eyebrow">Spis godt</div>
+      <h2>Fleur d'Olargues — 20 meter fra døren</h2>
+      <p>Lige ved huset finder du restauranten Fleur d'Olargues, anbefalet i Michelin-guiden 2025. Et køkken af høj kvalitet i smukke omgivelser under vinrankerne — kun et par skridt fra din dør.</p>
+      <p>Inden for cirka 20 minutters kørsel ligger yderligere 3–4 restauranter af høj kvalitet, så der er rig mulighed for gode måltider hele opholdet igennem.</p>
+      <div style="margin-top:1.2rem">
+        <span class="pill">Michelin-guide 2025</span>
+        <span class="pill">Qualité Hérault</span>
+        <span class="pill">3–4 restauranter i nærheden</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACTIVITIES -->
+<section class="alt" id="omraadet">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Området</div>
+      <h2>Natur, vin og oplevelser</h2>
+      <p>Olargues ligger i en af Frankrigs største nationalparker, midt i vinområdet Languedoc og cirka 40 minutter fra Middelhavet.</p>
+      <div class="divider"></div>
+    </div>
+    <div class="acts">
+      <div class="act reveal"><h3>Vinture</h3><p>Smag dig gennem Languedoc — Frankrigs største vinområde — med besøg hos de lokale vingårde.</p></div>
+      <div class="act reveal"><h3>Vandring &amp; trekking</h3><p>Fra korte spadtureture til længere trekking-ruter gennem nationalparkens bakker og skove.</p></div>
+      <div class="act reveal"><h3>Mountainbike &amp; gravel</h3><p>Stier og grusveje i alle sværhedsgrader for både mountainbike og gravelbike.</p></div>
+      <div class="act reveal"><h3>Rafting</h3><p>Kom ud på floderne i området, når du har lyst til lidt mere fart over oplevelsen.</p></div>
+      <div class="act reveal"><h3>En dukkert i Jaur</h3><p>Det klare flodvand i baghaven er perfekt til en svømmetur på en varm dag.</p></div>
+      <div class="act reveal"><h3>Middelhavet</h3><p>Cirka 40 minutters kørsel væk venter kysten, når du trænger til salt vand og strand.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- GETTING HERE -->
+<section>
+  <div class="wrap loc">
+    <div class="media reveal"><img src="images/landsby-altan.jpeg" alt="Udsigt over Olargues' stenhuse fra en altan med smedejernsgelænder"></div>
+    <div class="txt reveal">
+      <div class="eyebrow">Sådan kommer du hertil</div>
+      <h2 style="font-size:clamp(2rem,4.5vw,3rem);margin:.6rem 0 .4rem">Rejsen til Olargues</h2>
+      <p style="color:var(--ink-soft)">Den nemmeste vej er at flyve til Montpellier. Herfra er der cirka 1 time og 20 minutters kørsel til huset.</p>
+      <ul>
+        <li><span class="k">✈</span><span class="v"><strong>Fly til Montpellier</strong><span>Nærmeste lufthavn — herfra kører du selv eller får transfer.</span></span></li>
+        <li><span class="k">⌖</span><span class="v"><strong>Lej bil i lufthavnen</strong><span>Ca. 1 t. 20 min. kørsel til Olargues gennem smukt landskab.</span></span></li>
+        <li><span class="k">⇄</span><span class="v"><strong>Transfer kan arrangeres</strong><span>Har du ikke brug for bil under opholdet, hjælper vi gerne med transport.</span></span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section class="booking" id="booking">
+  <div class="bg"></div>
+  <div class="inner reveal">
+    <div class="eyebrow" style="color:rgba(255,255,255,.8)">Reservation</div>
+    <h2>Book dit ophold</h2>
+    <p>Send en forespørgsel på mail eller telefon, så vender vi tilbage til dig.</p>
+    <p class="note">Bemærk: Der er åbent for bookinger i 2026 fra den 7. oktober.</p>
+    <div class="actions">
+      <a class="btn btn-solid" href="mailto:?subject=Booking-forespørgsel%20–%20Maison%20Romantique">Skriv en mail</a>
+      <a class="btn btn-ghost" href="tel:+4528100751">Ring +45 28 10 07 51</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="grid">
+    <div class="col">
+      <h4>Maison Romantique</h4>
+      <p>Chambre d'hôtes i hjertet af middelalderbyen Olargues, Languedoc, Frankrig. En romantisk base for natur, vin og ro.</p>
+    </div>
+    <div class="col">
+      <span class="label">Kontakt</span>
+      <p><a href="tel:+4528100751">+45 28 10 07 51</a></p>
+      <p><a href="mailto:?subject=Booking-forespørgsel%20–%20Maison%20Romantique">Send en mail</a></p>
+    </div>
+    <div class="col">
+      <span class="label">Find rundt</span>
+      <p><a href="#vaerelser">Værelser</a></p>
+      <p><a href="#spisesteder">Spisesteder</a></p>
+      <p><a href="#omraadet">Området</a></p>
+      <p><a href="#booking">Book ophold</a></p>
+    </div>
+  </div>
+  <div class="base">
+    <span>© <span id="yr"></span> Maison Romantique · Olargues, France</span>
+    <span>Åbent for bookinger fra 7. oktober 2026</span>
+  </div>
+</footer>
+
+<script>
+  // nav scroll state
+  const nav=document.getElementById('nav');
+  const onScroll=()=>nav.classList.toggle('scrolled',window.scrollY>40);
+  onScroll();window.addEventListener('scroll',onScroll,{passive:true});
+
+  // mobile menu
+  const burger=document.getElementById('burger');
+  const links=document.getElementById('links');
+  burger.addEventListener('click',()=>links.classList.toggle('open'));
+  links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>links.classList.remove('open')));
+
+  // reveal on scroll
+  const io=new IntersectionObserver((es)=>{
+    es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+  },{threshold:.14});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  document.getElementById('yr').textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
