@@ -260,6 +260,43 @@
     *{animation:none!important;transition:none!important}
     .reveal{opacity:1;transform:none}
   }
+
+  /* ---------- LANGUAGE SWITCH ---------- */
+  .langs{display:flex;gap:.15rem;align-items:center;margin-left:1.4rem}
+  .langs button{
+    background:none;border:none;cursor:pointer;font-family:'Mulish',sans-serif;
+    font-size:.78rem;letter-spacing:.1em;font-weight:600;color:rgba(255,255,255,.7);
+    padding:.3rem .45rem;border-radius:2px;transition:color .3s,background .3s;text-transform:uppercase;
+  }
+  nav.scrolled .langs button{color:var(--ink-soft)}
+  .langs button:hover{color:var(--gold)}
+  .langs button.active{color:#fff}
+  nav.scrolled .langs button.active{color:var(--olive);background:rgba(110,114,69,.1)}
+  .langs .sep{color:rgba(255,255,255,.35);font-size:.7rem}
+  nav.scrolled .langs .sep{color:var(--line)}
+  @media(max-width:880px){
+    .langs{margin:1.4rem 0 0 0;justify-content:center}
+    .langs button{color:var(--ink-soft)!important;font-size:1rem}
+    .langs button.active{color:var(--olive)!important}
+  }
+
+  /* ---------- LOGO ---------- */
+  .hero-logo{
+    width:clamp(120px,15vw,168px);height:auto;margin:0 auto 1.6rem;
+    border-radius:50%;box-shadow:0 10px 34px rgba(0,0,0,.28);
+    background:var(--paper);
+  }
+  footer .foot-logo{
+    width:172px;height:auto;border-radius:6px;margin-bottom:1.1rem;
+    box-shadow:0 14px 30px rgba(0,0,0,.22);
+  }
+  .ext{display:inline-flex;align-items:center;gap:.28em}
+  .ext::after{content:'↗';font-size:.78em;opacity:.65;transition:transform .3s,opacity .3s}
+  a:hover .ext::after,.ext:hover::after{transform:translate(1px,-1px);opacity:1}
+  .act a{color:var(--olive-deep);text-decoration:none;border-bottom:1px solid var(--gold);
+    transition:color .3s,border-color .3s;padding-bottom:1px;font-weight:500}
+  .act a:hover{color:var(--gold);border-color:var(--olive)}
+  .act .link-row{margin-top:.9rem;font-size:.85rem}
 </style>
 </head>
 <body>
@@ -267,12 +304,17 @@
 <nav id="nav">
   <a href="#top" class="brand">Maison Romantique</a>
   <div class="links" id="links">
-    <a href="#stedet">Stedet</a>
-    <a href="#vaerelser">Værelser</a>
-    <a href="#huset">Huset</a>
-    <a href="#spisesteder">Spisesteder</a>
-    <a href="#omraadet">Området</a>
-    <a href="#booking" class="cta">Book ophold</a>
+    <a href="#stedet" data-i18n="nav_place">Stedet</a>
+    <a href="#vaerelser" data-i18n="nav_rooms">Værelser</a>
+    <a href="#huset" data-i18n="nav_house">Huset</a>
+    <a href="#spisesteder" data-i18n="nav_dining">Spisesteder</a>
+    <a href="#omraadet" data-i18n="nav_area">Området</a>
+    <a href="#booking" class="cta" data-i18n="nav_book">Book ophold</a>
+    <div class="langs" id="langs">
+      <button data-lang="da" class="active">DA</button><span class="sep">·</span>
+      <button data-lang="fr">FR</button><span class="sep">·</span>
+      <button data-lang="en">EN</button>
+    </div>
   </div>
   <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
@@ -281,26 +323,27 @@
 <header class="hero" id="top">
   <div class="bg"></div>
   <div class="inner">
-    <div class="eyebrow">Chambre d'hôtes · Olargues, Frankrig</div>
+    <img class="hero-logo" src="Logo.jpeg" alt="Maison Romantique – Chambre d'hôtes, Olargues">
+    <div class="eyebrow" data-i18n="hero_eyebrow">Chambre d'hôtes · Olargues, Frankrig</div>
     <h1>Maison <em>Romantique</em></h1>
-    <p class="sub">En romantisk middelalderby ved floden Jaur — midt i Languedoc og en af Frankrigs største nationalparker.</p>
+    <p class="sub" data-i18n="hero_sub">En romantisk middelalderby ved floden Jaur — midt i Languedoc og en af Frankrigs største nationalparker.</p>
   </div>
-  <div class="scroll-hint"><span>Træd indenfor</span><span class="line"></span></div>
+  <div class="scroll-hint"><span data-i18n="hero_scroll">Træd indenfor</span><span class="line"></span></div>
 </header>
 
 <!-- INTRO -->
 <section id="stedet">
   <div class="wrap intro">
     <div class="txt reveal">
-      <div class="eyebrow">Velkommen</div>
-      <h2>Et hus med sjæl i Olargues</h2>
-      <p>Maison Romantique ligger i hjertet af Olargues — optaget på den officielle liste over <a href="https://www.les-plus-beaux-villages-de-france.org" target="_blank" rel="noopener" class="inline-link">Frankrigs smukkeste landsbyer</a>. Husets værelser står med deres originale indretning, gulve og detaljer, og fra de fleste af dem er der udsigt til den gamle stenbro og floden nedenfor.</p>
-      <p>Byen tiltrækker først og fremmest dem, der søger den ægte, gamle stemning og den storslåede natur omkring. Her er stille. Her er smukt. Og her er tid til at trække vejret.</p>
-      <p>Vi bor cirka 40 minutters kørsel fra Middelhavet, midt i Frankrigs største vinområde, og med en af landets største nationalparker som baghave.</p>
+      <div class="eyebrow" data-i18n="intro_eyebrow">Velkommen</div>
+      <h2 data-i18n="intro_h">Et hus med sjæl i Olargues</h2>
+      <p data-i18n="intro_p1">Maison Romantique ligger i hjertet af Olargues — optaget på den officielle liste over <a href="https://www.les-plus-beaux-villages-de-france.org" target="_blank" rel="noopener" class="inline-link">Frankrigs smukkeste landsbyer</a>. Husets værelser står med deres originale indretning, gulve og detaljer, og fra de fleste af dem er der udsigt til den gamle stenbro og floden nedenfor.</p>
+      <p data-i18n="intro_p2">Byen tiltrækker først og fremmest dem, der søger den ægte, gamle stemning og den storslåede natur omkring. Her er stille. Her er smukt. Og her er tid til at trække vejret.</p>
+      <p data-i18n="intro_p3">Vi bor cirka 40 minutters kørsel fra Middelhavet, midt i Frankrigs største vinområde, og med en af landets største nationalparker som baghave.</p>
     </div>
     <div class="media reveal">
       <img src="IMG_7059.jpeg" alt="Olargues set fra oven med det gamle kirketårn og bjergene bag byen">
-      <div class="badge"><strong>★</strong><span>Frankrigs smukkeste<br>landsbyer</span></div>
+      <div class="badge"><strong>★</strong><span data-i18n="intro_badge">Frankrigs smukkeste<br>landsbyer</span></div>
     </div>
   </div>
 </section>
@@ -309,8 +352,8 @@
 <section class="alt">
   <div class="wrap">
     <div class="section-head reveal">
-      <div class="eyebrow">Lige uden for døren</div>
-      <h2>Floden, broen og solnedgangen</h2>
+      <div class="eyebrow" data-i18n="feat_eyebrow">Lige uden for døren</div>
+      <h2 data-i18n="feat_h">Floden, broen og solnedgangen</h2>
       <div class="divider"></div>
     </div>
 
@@ -318,8 +361,8 @@
       <div class="media"><img src="IMG_6714.jpeg" alt="Floden Jaur med klart vand mellem klipper og grønne træer"></div>
       <div class="txt">
         <span class="num">I.</span>
-        <h3>Floden Jaur</h3>
-        <p>Floden Jaur med det klareste vand løber gennem vores baghave — helt perfekt til en dukkert i det varme vejr. Find en sten i solen, læg dig i det kølige vand, og mærk roen fra naturen.</p>
+        <h3 data-i18n="feat1_h">Floden Jaur</h3>
+        <p data-i18n="feat1_p">Floden Jaur med det klareste vand løber gennem vores baghave — helt perfekt til en dukkert i det varme vejr. Find en sten i solen, læg dig i det kølige vand, og mærk roen fra naturen.</p>
       </div>
     </div>
 
@@ -327,9 +370,9 @@
       <div class="media"><img src="IMG_6718.jpeg" alt="Den gamle stenbro Pont du Diable over floden i Olargues"></div>
       <div class="txt">
         <span class="num">II.</span>
-        <h3>Pont du Diable</h3>
-        <p>Broen Pont du Diable er et af byens vartegn og stammer fra 1200-tallet. Den buer elegant over floden, og der er udsigt til den fra de fleste af husets værelser — et stykke levende historie, du vågner op til.</p>
-        <p>Ifølge legenden byggede djævelen selv broen i bytte for sjælen fra den første, der krydsede den. Snedigt nok sendte indbyggerne en sort kat over først — og siden har Djævlens Bro været et af landsbyens kæreste symboler.</p>
+        <h3 data-i18n="feat2_h">Pont du Diable</h3>
+        <p data-i18n="feat2_p1">Broen Pont du Diable er et af byens vartegn og stammer fra 1200-tallet. Den buer elegant over floden, og der er udsigt til den fra de fleste af husets værelser — et stykke levende historie, du vågner op til.</p>
+        <p data-i18n="feat2_p2">Ifølge legenden byggede djævelen selv broen i bytte for sjælen fra den første, der krydsede den. Snedigt nok sendte indbyggerne en sort kat over først — og siden har Djævlens Bro været et af landsbyens kæreste symboler.</p>
       </div>
     </div>
 
@@ -337,8 +380,8 @@
       <div class="media"><img src="IMG_6726.jpeg" alt="Solnedgang over bjergene set fra det højeste punkt i byen"></div>
       <div class="txt">
         <span class="num">III.</span>
-        <h3>Solnedgang ved kirketårnet</h3>
-        <p>Den smukkeste solnedgang ses fra byens højeste punkt ved det gamle kirketårn. Tag et glas rosé med, nyd stilheden og det vide udsyn over bjergene, mens dagen langsomt falder til ro.</p>
+        <h3 data-i18n="feat3_h">Solnedgang ved kirketårnet</h3>
+        <p data-i18n="feat3_p">Den smukkeste solnedgang ses fra byens højeste punkt ved det gamle kirketårn. Tag et glas rosé med, nyd stilheden og det vide udsyn over bjergene, mens dagen langsomt falder til ro.</p>
       </div>
     </div>
   </div>
@@ -348,34 +391,34 @@
 <section id="vaerelser">
   <div class="wrap">
     <div class="section-head reveal">
-      <div class="eyebrow">Overnatning</div>
-      <h2>De romantiske værelser</h2>
-      <p>Indrettet med den originale stemning bevaret — gamle gulve, fine detaljer og udsigt til floden fra de fleste værelser.</p>
+      <div class="eyebrow" data-i18n="rooms_eyebrow">Overnatning</div>
+      <h2 data-i18n="rooms_h">De romantiske værelser</h2>
+      <p data-i18n="rooms_sub">Indrettet med den originale stemning bevaret — gamle gulve, fine detaljer og udsigt til floden fra de fleste værelser.</p>
       <div class="divider"></div>
     </div>
     <div class="rooms-grid">
       <article class="room reveal">
         <div class="ph"><img src="IMG_7005.jpeg" alt="Lyst værelse med plankegulv, blomstret tapet og to vinduer ud mod det grønne"></div>
         <div class="body">
-          <h3>Det lyse værelse</h3>
-          <p>Højt til loftet, originale plankegulve og lyst tapet. To store vinduer lukker morgenlyset og det grønne ind.</p>
-          <div class="meta">Udsigt til floden</div>
+          <h3 data-i18n="room1_h">Det lyse værelse</h3>
+          <p data-i18n="room1_p">Højt til loftet, originale plankegulve og lyst tapet. To store vinduer lukker morgenlyset og det grønne ind.</p>
+          <div class="meta" data-i18n="room1_m">Udsigt til floden</div>
         </div>
       </article>
       <article class="room reveal">
         <div class="ph"><img src="IMG_7007.jpeg" alt="Romantisk værelse med blomstret tapet, spejl og dobbeltseng"></div>
         <div class="body">
-          <h3>Det romantiske værelse</h3>
-          <p>Blomstret tapet, antikt spejl og bløde gardiner. Et rum, der står, som det altid har gjort — roligt og romantisk.</p>
-          <div class="meta">Original indretning</div>
+          <h3 data-i18n="room2_h">Det romantiske værelse</h3>
+          <p data-i18n="room2_p">Blomstret tapet, antikt spejl og bløde gardiner. Et rum, der står, som det altid har gjort — roligt og romantisk.</p>
+          <div class="meta" data-i18n="room2_m">Original indretning</div>
         </div>
       </article>
       <article class="room reveal">
         <div class="ph"><img src="IMG_7012.jpeg" alt="Rummeligt værelse med antikke møbler, kommode med spejl og udsigt til bjergene"></div>
         <div class="body">
-          <h3>Det rummelige værelse</h3>
-          <p>Antikke møbler, en smuk kommode med spejl og plads til at slå sig ned. Vinduerne vender ud mod by og bjerge.</p>
-          <div class="meta">Plads og udsyn</div>
+          <h3 data-i18n="room3_h">Det rummelige værelse</h3>
+          <p data-i18n="room3_p">Antikke møbler, en smuk kommode med spejl og plads til at slå sig ned. Vinduerne vender ud mod by og bjerge.</p>
+          <div class="meta" data-i18n="room3_m">Plads og udsyn</div>
         </div>
       </article>
     </div>
@@ -386,19 +429,19 @@
 <section id="huset" class="alt">
   <div class="wrap">
     <div class="section-head reveal">
-      <div class="eyebrow">Fælles rum</div>
-      <h2>Huset og gårdhaven</h2>
-      <p>To rolige steder at samles — om aftenen ved pejsen og om morgenen i gårdhaven.</p>
+      <div class="eyebrow" data-i18n="house_eyebrow">Fælles rum</div>
+      <h2 data-i18n="house_h">Huset og gårdhaven</h2>
+      <p data-i18n="house_sub">To rolige steder at samles — om aftenen ved pejsen og om morgenen i gårdhaven.</p>
       <div class="divider"></div>
     </div>
     <div class="house">
       <figure class="reveal">
         <img src="IMG_6984.jpeg" alt="Hyggelig fælles pejsestue med to sofaer, bogreol og mønstret flisegulv">
-        <figcaption>Pejsestuen — til hyggelige aftener</figcaption>
+        <figcaption data-i18n="house_cap1">Pejsestuen — til hyggelige aftener</figcaption>
       </figure>
       <figure class="reveal">
         <img src="IMG_6982.jpeg" alt="Gårdhave med borde, oliventræer og den grønne hoveddør, hvor morgenmaden serveres">
-        <figcaption>Gårdhaven — hvor morgenmaden serveres</figcaption>
+        <figcaption data-i18n="house_cap2">Gårdhaven — hvor morgenmaden serveres</figcaption>
       </figure>
     </div>
   </div>
@@ -413,15 +456,20 @@
       <img src="IMG_6702.jpeg" alt="Michelin 2025-skilt ved indgangen til restauranten">
     </div>
     <div class="txt reveal">
-      <div class="eyebrow">Spis godt</div>
-      <h2>Fleur d'Olargues — 20 meter fra døren</h2>
-      <p>Lige ved huset finder du restauranten Fleur d'Olargues, anbefalet i Michelin-guiden 2025. Et køkken af høj kvalitet i smukke omgivelser under vinrankerne — kun et par skridt fra din dør.</p>
-      <p>Inden for cirka 20 minutters kørsel ligger yderligere 3–4 restauranter af høj kvalitet, så der er rig mulighed for gode måltider hele opholdet igennem.</p>
+      <div class="eyebrow" data-i18n="dining_eyebrow">Spis godt</div>
+      <h2 data-i18n="dining_h">Fleur d'Olargues — 20 meter fra døren</h2>
+      <p data-i18n="dining_p1">Lige ved huset finder du restauranten Fleur d'Olargues, anbefalet i Michelin-guiden 2025. Et køkken af høj kvalitet i smukke omgivelser under vinrankerne — kun et par skridt fra din dør.</p>
+      <p data-i18n="dining_p2">Inden for cirka 20 minutters kørsel ligger yderligere 3–4 restauranter af høj kvalitet, så der er rig mulighed for gode måltider hele opholdet igennem.</p>
       <div style="margin-top:1.2rem">
-        <span class="pill">Michelin-guide 2025</span>
-        <span class="pill">Qualité Hérault</span>
-        <span class="pill">3–4 restauranter i nærheden</span>
+        <span class="pill" data-i18n="dining_pill1">Michelin-guide 2025</span>
+        <span class="pill" data-i18n="dining_pill2">Qualité Hérault</span>
+        <span class="pill" data-i18n="dining_pill3">3–4 restauranter i nærheden</span>
       </div>
+      <p style="margin-top:1.2rem">
+        <a class="inline-link ext" href="https://www.fleursdeolargues.com" target="_blank" rel="noopener" data-i18n="dining_link1">Besøg Fleur d'Olargues</a>
+        &nbsp;·&nbsp;
+        <a class="inline-link ext" href="https://www.minervois-caroux.com/da/" target="_blank" rel="noopener" data-i18n="dining_link2">Flere restauranter i området</a>
+      </p>
     </div>
   </div>
 </section>
@@ -430,18 +478,18 @@
 <section class="alt" id="omraadet">
   <div class="wrap">
     <div class="section-head reveal">
-      <div class="eyebrow">Området</div>
-      <h2>Natur, vin og oplevelser</h2>
-      <p>Olargues ligger i en af Frankrigs største nationalparker, midt i vinområdet Languedoc og cirka 40 minutter fra Middelhavet.</p>
+      <div class="eyebrow" data-i18n="area_eyebrow">Området</div>
+      <h2 data-i18n="area_h">Natur, vin og oplevelser</h2>
+      <p data-i18n="area_sub">Olargues ligger i en af Frankrigs største nationalparker, midt i vinområdet Languedoc og cirka 40 minutter fra Middelhavet.</p>
       <div class="divider"></div>
     </div>
     <div class="acts">
-      <div class="act reveal"><h3>Vinture</h3><p>Smag dig gennem Languedoc — Frankrigs største vinområde — med besøg hos de lokale vingårde.</p></div>
-      <div class="act reveal"><h3>Vandring &amp; trekking</h3><p>Fra korte spadtureture til længere trekking-ruter gennem nationalparkens bakker og skove.</p></div>
-      <div class="act reveal"><h3>Mountainbike &amp; gravel</h3><p>Stier og grusveje i alle sværhedsgrader for både mountainbike og gravelbike.</p></div>
-      <div class="act reveal"><h3>Rafting</h3><p>Kom ud på floderne i området, når du har lyst til lidt mere fart over oplevelsen.</p></div>
-      <div class="act reveal"><h3>En dukkert i Jaur</h3><p>Det klare flodvand i baghaven er perfekt til en svømmetur på en varm dag.</p></div>
-      <div class="act reveal"><h3>Middelhavet</h3><p>Cirka 40 minutters kørsel væk venter kysten, når du trænger til salt vand og strand.</p></div>
+      <div class="act reveal"><h3 data-i18n="act1_h">Vinture</h3><p data-i18n="act1_p">Smag dig gennem Languedoc — Frankrigs største vinområde — med besøg hos de lokale vingårde.</p><div class="link-row"><a class="ext" href="https://www.minervois-caroux.com/fr/bouger/oenotourisme.html" target="_blank" rel="noopener" data-i18n="act1_link">Find vinture</a></div></div>
+      <div class="act reveal"><h3 data-i18n="act2_h">Vandring &amp; trekking</h3><p data-i18n="act2_p">Fra korte spadtureture til længere trekking-ruter gennem nationalparkens bakker og skove.</p><div class="link-row"><a class="ext" href="https://www.parc-haut-languedoc.fr/decouvrir-le-parc/activites-nature/randonnee-et-sports-nature" target="_blank" rel="noopener" data-i18n="act2_link">Vandreruter i parken</a></div></div>
+      <div class="act reveal"><h3 data-i18n="act3_h">Mountainbike &amp; gravel</h3><p data-i18n="act3_p">Stier og grusveje i alle sværhedsgrader for både mountainbike og gravelbike.</p><div class="link-row"><a class="ext" href="https://www.herault-tourisme.com/fr/fiche/itineraires-touristiques/circuit-olargues-la-salle-site-vtt-caroux-en-haut-languedoc-olargues_TFOITILAR034V51IN14/" target="_blank" rel="noopener" data-i18n="act3_link">MTB- & gravelruter</a></div></div>
+      <div class="act reveal"><h3 data-i18n="act4_h">Rafting</h3><p data-i18n="act4_p">Kom ud på floderne i området, når du har lyst til lidt mere fart over oplevelsen.</p><div class="link-row"><a class="ext" href="https://www.canoe-tarassac.com" target="_blank" rel="noopener" data-i18n="act4_link">Canoë Tarassac</a></div></div>
+      <div class="act reveal"><h3 data-i18n="act5_h">En dukkert i Jaur</h3><p data-i18n="act5_p">Det klare flodvand i baghaven er perfekt til en svømmetur på en varm dag.</p></div>
+      <div class="act reveal"><h3 data-i18n="act6_h">Middelhavet</h3><p data-i18n="act6_p">Cirka 40 minutters kørsel væk venter kysten, når du trænger til salt vand og strand.</p></div>
     </div>
   </div>
 </section>
@@ -451,13 +499,13 @@
   <div class="wrap loc">
     <div class="media reveal"><img src="IMG_6731.jpeg" alt="Udsigt over Olargues' stenhuse fra en altan med smedejernsgelænder"></div>
     <div class="txt reveal">
-      <div class="eyebrow">Sådan kommer du hertil</div>
-      <h2 style="font-size:clamp(2rem,4.5vw,3rem);margin:.6rem 0 .4rem">Rejsen til Olargues</h2>
-      <p style="color:var(--ink-soft)">Den nemmeste vej er at flyve til Montpellier. Herfra er der cirka 1 time og 20 minutters kørsel til huset.</p>
+      <div class="eyebrow" data-i18n="loc_eyebrow">Sådan kommer du hertil</div>
+      <h2 style="font-size:clamp(2rem,4.5vw,3rem);margin:.6rem 0 .4rem" data-i18n="loc_h">Rejsen til Olargues</h2>
+      <p style="color:var(--ink-soft)" data-i18n="loc_sub">Den nemmeste vej er at flyve til Montpellier. Herfra er der cirka 1 time og 20 minutters kørsel til huset.</p>
       <ul>
-        <li><span class="k">✈</span><span class="v"><strong>Fly til Montpellier</strong><span>Nærmeste lufthavn — herfra kører du selv eller får transfer.</span></span></li>
-        <li><span class="k">⌖</span><span class="v"><strong>Lej bil i lufthavnen</strong><span>Ca. 1 t. 20 min. kørsel til Olargues gennem smukt landskab.</span></span></li>
-        <li><span class="k">⇄</span><span class="v"><strong>Transfer kan arrangeres</strong><span>Har du ikke brug for bil under opholdet, hjælper vi gerne med transport.</span></span></li>
+        <li><span class="k">✈</span><span class="v"><strong data-i18n="loc1_h">Fly til Montpellier</strong><span data-i18n="loc1_p">Nærmeste lufthavn — herfra kører du selv eller får transfer.</span></span></li>
+        <li><span class="k">⌖</span><span class="v"><strong data-i18n="loc2_h">Lej bil i lufthavnen</strong><span data-i18n="loc2_p">Ca. 1 t. 20 min. kørsel til Olargues gennem smukt landskab.</span></span></li>
+        <li><span class="k">⇄</span><span class="v"><strong data-i18n="loc3_h">Transfer kan arrangeres</strong><span data-i18n="loc3_p">Har du ikke brug for bil under opholdet, hjælper vi gerne med transport.</span></span></li>
       </ul>
     </div>
   </div>
@@ -467,13 +515,13 @@
 <section class="booking" id="booking">
   <div class="bg"></div>
   <div class="inner reveal">
-    <div class="eyebrow" style="color:rgba(255,255,255,.8)">Reservation</div>
-    <h2>Book dit ophold</h2>
-    <p>Send en forespørgsel på mail eller telefon, så vender vi tilbage til dig.</p>
-    <p class="note">Bemærk: Der er åbent for bookinger i 2026 fra den 7. oktober.</p>
+    <div class="eyebrow" style="color:rgba(255,255,255,.8)" data-i18n="book_eyebrow">Reservation</div>
+    <h2 data-i18n="book_h">Book dit ophold</h2>
+    <p data-i18n="book_p">Send en forespørgsel på mail eller telefon, så vender vi tilbage til dig.</p>
+    <p class="note" data-i18n="book_note">Bemærk: Der er åbent for bookinger i 2026 fra den 7. oktober.</p>
     <div class="actions">
-      <a class="btn btn-solid" href="mailto:?subject=Booking-forespørgsel%20–%20Maison%20Romantique">Skriv en mail</a>
-      <a class="btn btn-ghost" href="tel:+4528100751">Ring +45 28 10 07 51</a>
+      <a class="btn btn-solid" href="mailto:?subject=Booking-foresp%C3%B8rgsel%20%E2%80%93%20Maison%20Romantique" data-i18n="book_mail">Skriv en mail</a>
+      <a class="btn btn-ghost" href="tel:+4528100751" data-i18n="book_call">Ring +45 28 10 07 51</a>
     </div>
   </div>
 </section>
@@ -482,25 +530,25 @@
 <footer>
   <div class="grid">
     <div class="col">
-      <h4>Maison Romantique</h4>
-      <p>Chambre d'hôtes i hjertet af middelalderbyen Olargues, Languedoc, Frankrig. En romantisk base for natur, vin og ro.</p>
+      <img class="foot-logo" src="Logo.jpeg" alt="Maison Romantique – Chambre d'hôtes, Olargues">
+      <p data-i18n="foot_about">Chambre d'hôtes i hjertet af middelalderbyen Olargues, Languedoc, Frankrig. En romantisk base for natur, vin og ro.</p>
     </div>
     <div class="col">
-      <span class="label">Kontakt</span>
+      <span class="label" data-i18n="foot_contact">Kontakt</span>
       <p><a href="tel:+4528100751">+45 28 10 07 51</a></p>
-      <p><a href="mailto:?subject=Booking-forespørgsel%20–%20Maison%20Romantique">Send en mail</a></p>
+      <p><a href="mailto:?subject=Booking-foresp%C3%B8rgsel%20%E2%80%93%20Maison%20Romantique" data-i18n="foot_mail">Send en mail</a></p>
     </div>
     <div class="col">
-      <span class="label">Find rundt</span>
-      <p><a href="#vaerelser">Værelser</a></p>
-      <p><a href="#spisesteder">Spisesteder</a></p>
-      <p><a href="#omraadet">Området</a></p>
-      <p><a href="#booking">Book ophold</a></p>
+      <span class="label" data-i18n="foot_nav">Find rundt</span>
+      <p><a href="#vaerelser" data-i18n="nav_rooms">Værelser</a></p>
+      <p><a href="#spisesteder" data-i18n="nav_dining">Spisesteder</a></p>
+      <p><a href="#omraadet" data-i18n="nav_area">Området</a></p>
+      <p><a href="#booking" data-i18n="nav_book">Book ophold</a></p>
     </div>
   </div>
   <div class="base">
     <span>© <span id="yr"></span> Maison Romantique · Olargues, France</span>
-    <span>Åbent for bookinger fra 7. oktober 2026</span>
+    <span data-i18n="foot_open">Åbent for bookinger fra 7. oktober 2026</span>
   </div>
 </footer>
 
@@ -523,6 +571,31 @@
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
   document.getElementById('yr').textContent=new Date().getFullYear();
+</script>
+
+<script>
+  const I18N = {"fr": {"nav_place": "Le lieu", "nav_rooms": "Chambres", "nav_house": "La maison", "nav_dining": "Restaurants", "nav_area": "La région", "nav_book": "Réserver", "hero_eyebrow": "Chambre d'hôtes · Olargues, France", "hero_sub": "Un village médiéval romantique au bord du Jaur — au cœur du Languedoc et de l'un des plus grands parcs naturels de France.", "hero_scroll": "Entrez", "intro_eyebrow": "Bienvenue", "intro_h": "Une maison pleine d'âme à Olargues", "intro_p1": "Maison Romantique se trouve au cœur d'Olargues — inscrit sur la liste officielle des <a href=\"https://www.les-plus-beaux-villages-de-france.org\" target=\"_blank\" rel=\"noopener\" class=\"inline-link\">Plus Beaux Villages de France</a>. Les chambres ont conservé leur décor d'origine, leurs sols et leurs détails, et la plupart offrent une vue sur le vieux pont de pierre et la rivière en contrebas.", "intro_p2": "Le village attire avant tout ceux qui recherchent une atmosphère authentique et ancienne, et la nature grandiose tout autour. Ici règne le calme. Ici, tout est beau. Et l'on prend enfin le temps de respirer.", "intro_p3": "Nous sommes à environ 40 minutes en voiture de la Méditerranée, au cœur du plus grand vignoble de France, avec l'un des plus grands parcs naturels du pays pour jardin.", "intro_badge": "Plus Beaux Villages<br>de France", "feat_eyebrow": "Juste devant la porte", "feat_h": "La rivière, le pont et le coucher de soleil", "feat1_h": "La rivière Jaur", "feat1_p": "La rivière Jaur, à l'eau la plus claire, traverse notre jardin — parfaite pour une baignade par temps chaud. Trouvez une pierre au soleil, plongez dans l'eau fraîche et laissez la nature vous apaiser.", "feat2_h": "Le Pont du Diable", "feat2_p1": "Le Pont du Diable est l'un des emblèmes du village et date du XIIIᵉ siècle. Son arche élégante enjambe la rivière, et la plupart des chambres de la maison y donnent — un morceau d'histoire vivante au réveil.", "feat2_p2": "Selon la légende, le diable lui-même construisit le pont en échange de l'âme du premier qui le traverserait. Astucieux, les habitants y firent passer un chat noir en premier — et depuis, le Pont du Diable est l'un des symboles les plus chers du village.", "feat3_h": "Coucher de soleil près du clocher", "feat3_p": "Le plus beau coucher de soleil se contemple depuis le point le plus haut du village, près du vieux clocher. Emportez un verre de rosé, savourez le silence et la vue immense sur les montagnes tandis que le jour s'éteint doucement.", "rooms_eyebrow": "Hébergement", "rooms_h": "Les chambres romantiques", "rooms_sub": "Aménagées dans l'esprit d'origine — vieux parquets, beaux détails et vue sur la rivière depuis la plupart des chambres.", "room1_h": "La chambre lumineuse", "room1_p": "Hauts plafonds, parquets d'origine et papier peint clair. Deux grandes fenêtres laissent entrer la lumière du matin et la verdure.", "room1_m": "Vue sur la rivière", "room2_h": "La chambre romantique", "room2_p": "Papier peint fleuri, miroir ancien et rideaux légers. Une pièce restée telle qu'elle a toujours été — paisible et romantique.", "room2_m": "Décor d'origine", "room3_h": "La chambre spacieuse", "room3_p": "Meubles anciens, une belle commode à miroir et de la place pour s'installer. Les fenêtres donnent sur le village et les montagnes.", "room3_m": "Espace et panorama", "house_eyebrow": "Espaces communs", "house_h": "La maison et la cour", "house_sub": "Deux lieux paisibles où se retrouver — le soir au coin du feu, le matin dans la cour.", "house_cap1": "Le salon-cheminée — pour les belles soirées", "house_cap2": "La cour — où le petit-déjeuner est servi", "dining_eyebrow": "Bien manger", "dining_h": "Fleur d'Olargues — à 20 mètres de la porte", "dining_p1": "Juste à côté de la maison se trouve le restaurant Fleur d'Olargues, recommandé par le Guide Michelin 2025. Une cuisine de grande qualité dans un cadre charmant sous les treilles — à quelques pas de votre porte.", "dining_p2": "Dans un rayon d'environ 20 minutes en voiture, on trouve 3 à 4 autres restaurants de grande qualité : de quoi bien dîner tout au long du séjour.", "dining_pill1": "Guide Michelin 2025", "dining_pill2": "Qualité Hérault", "dining_pill3": "3–4 restaurants à proximité", "area_eyebrow": "La région", "area_h": "Nature, vin et découvertes", "area_sub": "Olargues se situe dans l'un des plus grands parcs naturels de France, au cœur du vignoble du Languedoc et à environ 40 minutes de la Méditerranée.", "act1_h": "Routes des vins", "act1_p": "Dégustez le Languedoc — le plus grand vignoble de France — en visitant les domaines locaux.", "act2_h": "Randonnée & trekking", "act2_p": "De la petite balade aux longues randonnées à travers les collines et les forêts du parc.", "act3_h": "VTT & gravel", "act3_p": "Sentiers et chemins de tous niveaux, pour le VTT comme pour le gravel.", "act4_h": "Rafting", "act4_p": "Lancez-vous sur les rivières de la région quand vous avez envie d'un peu plus de sensations.", "act5_h": "Une baignade dans le Jaur", "act5_p": "L'eau claire de la rivière, au fond du jardin, est parfaite pour nager par temps chaud.", "act6_h": "La Méditerranée", "act6_p": "À environ 40 minutes en voiture, la côte vous attend pour le sel et la plage.", "loc_eyebrow": "Comment venir", "loc_h": "Le voyage jusqu'à Olargues", "loc_sub": "Le plus simple est de prendre l'avion jusqu'à Montpellier. De là, comptez environ 1 h 20 de route jusqu'à la maison.", "loc1_h": "Vol vers Montpellier", "loc1_p": "L'aéroport le plus proche — ensuite en voiture ou avec un transfert.", "loc2_h": "Location de voiture à l'aéroport", "loc2_p": "Env. 1 h 20 de route jusqu'à Olargues à travers de beaux paysages.", "loc3_h": "Transfert possible", "loc3_p": "Si vous n'avez pas besoin de voiture sur place, nous organisons volontiers le transport.", "book_eyebrow": "Réservation", "book_h": "Réservez votre séjour", "book_p": "Envoyez-nous une demande par e-mail ou par téléphone, et nous vous répondrons.", "book_note": "À noter : les réservations pour 2026 sont ouvertes à partir du 7 octobre.", "book_mail": "Écrire un e-mail", "book_call": "Appeler +45 28 10 07 51", "foot_about": "Chambre d'hôtes au cœur du village médiéval d'Olargues, Languedoc, France. Un refuge romantique pour la nature, le vin et le calme.", "foot_contact": "Contact", "foot_mail": "Envoyer un e-mail", "foot_nav": "Navigation", "dining_link1": "Visiter Fleur d'Olargues", "dining_link2": "Plus de restaurants dans la région", "act1_link": "Trouver des routes des vins", "act2_link": "Sentiers de randonnée du parc", "act3_link": "Itinéraires VTT & gravel", "act4_link": "Canoë Tarassac", "foot_open": "Réservations ouvertes à partir du 7 octobre 2026"}, "en": {"nav_place": "The place", "nav_rooms": "Rooms", "nav_house": "The house", "nav_dining": "Dining", "nav_area": "The area", "nav_book": "Book a stay", "hero_eyebrow": "Chambre d'hôtes · Olargues, France", "hero_sub": "A romantic medieval village on the river Jaur — in the heart of Languedoc and one of France's largest natural parks.", "hero_scroll": "Step inside", "intro_eyebrow": "Welcome", "intro_h": "A house with soul in Olargues", "intro_p1": "Maison Romantique sits in the heart of Olargues — listed among the official <a href=\"https://www.les-plus-beaux-villages-de-france.org\" target=\"_blank\" rel=\"noopener\" class=\"inline-link\">Most Beautiful Villages of France</a>. The rooms keep their original décor, floors and details, and most look out over the old stone bridge and the river below.", "intro_p2": "The village draws those who seek a genuine, time-worn atmosphere and the grand nature all around. It is quiet here. It is beautiful here. And here there is time to breathe.", "intro_p3": "We are about a 40-minute drive from the Mediterranean, in the heart of France's largest wine region, with one of the country's largest national parks as our back garden.", "intro_badge": "Most Beautiful<br>Villages of France", "feat_eyebrow": "Right outside the door", "feat_h": "The river, the bridge and the sunset", "feat1_h": "The river Jaur", "feat1_p": "The river Jaur, with the clearest water, runs through our back garden — perfect for a dip on a warm day. Find a stone in the sun, slip into the cool water and let the calm of nature wash over you.", "feat2_h": "Pont du Diable", "feat2_p1": "The Pont du Diable is one of the village's landmarks and dates from the 13th century. Its graceful arch spans the river, and most of the house's rooms look onto it — a piece of living history to wake up to.", "feat2_p2": "According to legend, the devil himself built the bridge in exchange for the soul of the first to cross it. Cunningly, the villagers sent a black cat across first — and ever since, the Devil's Bridge has been one of the village's most beloved symbols.", "feat3_h": "Sunset by the bell tower", "feat3_p": "The most beautiful sunset is seen from the highest point in the village, by the old bell tower. Bring a glass of rosé, enjoy the silence and the wide view over the mountains as the day slowly settles.", "rooms_eyebrow": "Stay", "rooms_h": "The romantic rooms", "rooms_sub": "Furnished with the original mood kept intact — old floors, fine details and a river view from most rooms.", "room1_h": "The bright room", "room1_p": "High ceilings, original plank floors and light wallpaper. Two large windows let in the morning light and the greenery.", "room1_m": "River view", "room2_h": "The romantic room", "room2_p": "Floral wallpaper, an antique mirror and soft curtains. A room that stands as it always has — peaceful and romantic.", "room2_m": "Original décor", "room3_h": "The spacious room", "room3_p": "Antique furniture, a beautiful mirrored dresser and room to settle in. The windows face the village and the mountains.", "room3_m": "Space and views", "house_eyebrow": "Shared spaces", "house_h": "The house and the courtyard", "house_sub": "Two quiet places to gather — by the fireplace in the evening, in the courtyard in the morning.", "house_cap1": "The fireside lounge — for cosy evenings", "house_cap2": "The courtyard — where breakfast is served", "dining_eyebrow": "Eat well", "dining_h": "Fleur d'Olargues — 20 metres from the door", "dining_p1": "Right beside the house you'll find the restaurant Fleur d'Olargues, recommended in the 2025 Michelin Guide. High-quality cooking in beautiful surroundings beneath the vines — just a few steps from your door.", "dining_p2": "Within about a 20-minute drive there are a further 3–4 high-quality restaurants, so there is ample opportunity for good meals throughout your stay.", "dining_pill1": "Michelin Guide 2025", "dining_pill2": "Qualité Hérault", "dining_pill3": "3–4 restaurants nearby", "area_eyebrow": "The area", "area_h": "Nature, wine and experiences", "area_sub": "Olargues lies in one of France's largest national parks, in the heart of the Languedoc wine region and about 40 minutes from the Mediterranean.", "act1_h": "Wine tours", "act1_p": "Taste your way through Languedoc — France's largest wine region — with visits to the local estates.", "act2_h": "Hiking & trekking", "act2_p": "From short strolls to longer trekking routes through the park's hills and forests.", "act3_h": "Mountain & gravel biking", "act3_p": "Trails and gravel roads of every difficulty, for both mountain and gravel bikes.", "act4_h": "Rafting", "act4_p": "Head out onto the area's rivers when you fancy a little more pace to the day.", "act5_h": "A dip in the Jaur", "act5_p": "The clear river water in the back garden is perfect for a swim on a warm day.", "act6_h": "The Mediterranean", "act6_p": "About a 40-minute drive away, the coast awaits when you long for salt water and sand.", "loc_eyebrow": "How to get here", "loc_h": "The journey to Olargues", "loc_sub": "The easiest way is to fly to Montpellier. From there it is about 1 hour 20 minutes by car to the house.", "loc1_h": "Fly to Montpellier", "loc1_p": "The nearest airport — from here you drive yourself or arrange a transfer.", "loc2_h": "Rent a car at the airport", "loc2_p": "Approx. 1 hr 20 min drive to Olargues through beautiful scenery.", "loc3_h": "Transfer can be arranged", "loc3_p": "If you don't need a car during your stay, we're happy to help with transport.", "book_eyebrow": "Reservation", "book_h": "Book your stay", "book_p": "Send us an enquiry by email or phone, and we'll get back to you.", "book_note": "Please note: bookings for 2026 open from 7 October.", "book_mail": "Write an email", "book_call": "Call +45 28 10 07 51", "foot_about": "Chambre d'hôtes in the heart of the medieval village of Olargues, Languedoc, France. A romantic base for nature, wine and calm.", "foot_contact": "Contact", "foot_mail": "Send an email", "foot_nav": "Navigation", "dining_link1": "Visit Fleur d'Olargues", "dining_link2": "More restaurants in the area", "act1_link": "Find wine tours", "act2_link": "Hiking trails in the park", "act3_link": "MTB & gravel routes", "act4_link": "Canoë Tarassac", "foot_open": "Bookings open from 7 October 2026"}};
+  const META = {"da": {"title": "Maison Romantique · Chambre d'hôtes · Olargues, Frankrig", "lang": "da"}, "fr": {"title": "Maison Romantique · Chambre d'hôtes · Olargues, France", "lang": "fr"}, "en": {"title": "Maison Romantique · Chambre d'hôtes · Olargues, France", "lang": "en"}};
+  function setLang(lang){
+    document.querySelectorAll('[data-i18n]').forEach(el=>{
+      if(lang==='da'){ if(el.dataset.da!==undefined) el.innerHTML=el.dataset.da; return; }
+      const dict=I18N[lang]; const key=el.getAttribute('data-i18n');
+      if(dict && dict[key]!==undefined) el.innerHTML=dict[key];
+    });
+    document.documentElement.lang = (META[lang]&&META[lang].lang)||lang;
+    if(META[lang]&&META[lang].title) document.title=META[lang].title;
+    document.querySelectorAll('#langs button').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));
+    try{localStorage.setItem('mr_lang',lang);}catch(e){}
+  }
+  // gem dansk original-tekst på hvert element, så vi kan skifte tilbage
+  document.querySelectorAll('[data-i18n]').forEach(el=>{ el.dataset.da = el.innerHTML; });
+  document.querySelectorAll('#langs button').forEach(b=>{
+    b.addEventListener('click',()=>setLang(b.dataset.lang));
+  });
+  (function(){
+    let saved='da'; try{saved=localStorage.getItem('mr_lang')||'da';}catch(e){}
+    if(saved!=='da') setLang(saved);
+  })();
 </script>
 </body>
 </html>
